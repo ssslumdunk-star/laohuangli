@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交易老黄历 - 今日交易宜忌</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">交易老黄历</h1>
+            <p class="subtitle">掌握市场脉搏，洞悉交易时机</p>
+        </header>
+
+        <main class="main">
+            <section class="date-section">
+                <div class="date-card">
+                    <div class="date-number" id="dateNumber"></div>
+                    <div class="date-info">
+                        <div class="date-text" id="dateText"></div>
+                        <div class="weekday" id="weekday"></div>
+                        <div class="lunar-date" id="lunarDate"></div>
+                        <div class="lunar-year" id="lunarYear"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="fortune-section">
+                <div class="fortune-grid">
+                    <div class="fortune-card favorable">
+                        <div class="card-header">
+                            <h2 class="card-title">宜</h2>
+                            <div class="card-icon">✅</div>
+                        </div>
+                        <div class="card-content">
+                            <ul class="fortune-list" id="favorableList">
+                                <li>正在加载...</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="fortune-card unfavorable">
+                        <div class="card-header">
+                            <h2 class="card-title">忌</h2>
+                            <div class="card-icon">❌</div>
+                        </div>
+                        <div class="card-content">
+                            <ul class="fortune-list" id="unfavorableList">
+                                <li>正在加载...</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="advice-section">
+                <div class="advice-card">
+                    <h3 class="advice-title">今日投资箴言</h3>
+                    <div id="dailyAdvice">正在加载...</div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p class="footer-text">仅供娱乐参考，投资有风险，交易需谨慎</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
