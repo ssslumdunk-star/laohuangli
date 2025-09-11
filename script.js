@@ -212,6 +212,83 @@ const investorQuotes = [
         chinese: "耐心、纪律和理性是投资成功的三大支柱。",
         english: "Patience, discipline and rationality are the three pillars of investment success.",
         author: "约翰·博格"
+    },
+    
+    // 道家智慧语录
+    {
+        chinese: "无为而无不为，静中观市场之动。",
+        english: "Act without forcing, achieve without striving. In stillness, observe the market's movement.",
+        author: "老子·《道德经》"
+    },
+    {
+        chinese: "知足不辱，知止不殆，可以长久。",
+        english: "Know when enough is enough to avoid disgrace, know when to stop to avoid danger, and you can endure.",
+        author: "老子·《道德经》"
+    },
+    {
+        chinese: "大道至简，繁华看淡皆是道。投资之道，亦在去繁就简。",
+        english: "The Great Way is simple. See through complexity to find the Way. The path of investment lies in simplicity.",
+        author: "道家智慧"
+    },
+    {
+        chinese: "水善利万物而不争，投资者当效水之德。",
+        english: "Water benefits all things and does not compete. Investors should emulate the virtue of water.",
+        author: "老子·《道德经》"
+    },
+    {
+        chinese: "知其白，守其黑，为天下式。明其盈，守其虚，富贵无期。",
+        english: "Know the white but keep to the black, be a pattern for the world. Know fullness but keep to emptiness, wealth has no limit.",
+        author: "老子·《道德经》"
+    },
+    {
+        chinese: "天地不仁，以万物为刍狗。市场不仁，涨跌皆是常理。",
+        english: "Heaven and Earth are impartial, treating all things as grass and dogs. Markets are impartial, rises and falls are natural law.",
+        author: "老子·《道德经》"
+    },
+    {
+        chinese: "致虚极，守静笃。万物并作，吾以观复。",
+        english: "Attain the utmost emptiness, maintain perfect stillness. All things flourish, and I observe their return.",
+        author: "老子·《道德经》"
+    },
+    {
+        chinese: "圣人不积，既以为人己愈有，既以与人己愈多。",
+        english: "The sage does not accumulate. The more he helps others, the more he benefits himself.",
+        author: "老子·《道德经》"
+    },
+    {
+        chinese: "反者道之动，弱者道之用。盛极必衰，否极泰来。",
+        english: "Reversal is the movement of the Way; yielding is the way of the Way. What reaches extremes will decline, what reaches bottom will rise.",
+        author: "老子·《道德经》"
+    },
+    {
+        chinese: "善者不辩，辩者不善。知者不博，博者不知。",
+        english: "The good do not argue, those who argue are not good. The wise are not learned, the learned are not wise.",
+        author: "老子·《道德经》"
+    },
+    {
+        chinese: "大智若愚，大巧若拙。投资大道，返璞归真。",
+        english: "Great wisdom appears foolish, great skill appears clumsy. The great way of investing returns to simplicity.",
+        author: "老子·《道德经》"
+    },
+    {
+        chinese: "上善若水，厚德载物。投资如水，顺势而为。",
+        english: "The highest good is like water, virtue carries all things. Investment is like water, follow the flow.",
+        author: "老子·《道德经》"
+    },
+    {
+        chinese: "夫唯不争，故天下莫能与之争。不争之德，乃投资之上策。",
+        english: "Only by not competing can no one compete with you. The virtue of non-competition is the highest strategy in investment.",
+        author: "老子·《道德经》"
+    },
+    {
+        chinese: "道生一，一生二，二生三，三生万物。市场变化，皆有其道。",
+        english: "The Way begets one, one begets two, two begets three, three begets all things. Market changes all follow the Way.",
+        author: "老子·《道德经》"
+    },
+    {
+        chinese: "柔胜刚，弱胜强。天下莫不知，莫能行。",
+        english: "The soft overcomes the hard, the weak overcomes the strong. Everyone knows this, but none can practice it.",
+        author: "老子·《道德经》"
     }
 ];
 
@@ -254,6 +331,69 @@ function getDateBasedItems(array, count, dateString, seed = 0) {
 function getDateBasedItem(array, dateString, seed = 0) {
     const hash = dateHash(dateString, seed);
     return array[hash % array.length];
+}
+
+// 十二时辰计算工具
+function getCurrentShichen(date = new Date()) {
+    const hour = date.getHours();
+    const shichens = [
+        { name: '子时', description: '夜半', time: '23:00-1:00', range: [23, 1] },
+        { name: '丑时', description: '鸡鸣', time: '1:00-3:00', range: [1, 3] },
+        { name: '寅时', description: '平旦', time: '3:00-5:00', range: [3, 5] },
+        { name: '卯时', description: '日出', time: '5:00-7:00', range: [5, 7] },
+        { name: '辰时', description: '食时', time: '7:00-9:00', range: [7, 9] },
+        { name: '巳时', description: '隅中', time: '9:00-11:00', range: [9, 11] },
+        { name: '午时', description: '日中', time: '11:00-13:00', range: [11, 13] },
+        { name: '未时', description: '日昳', time: '13:00-15:00', range: [13, 15] },
+        { name: '申时', description: '晡时', time: '15:00-17:00', range: [15, 17] },
+        { name: '酉时', description: '日入', time: '17:00-19:00', range: [17, 19] },
+        { name: '戌时', description: '黄昏', time: '19:00-21:00', range: [19, 21] },
+        { name: '亥时', description: '人定', time: '21:00-23:00', range: [21, 23] }
+    ];
+    
+    // 特殊处理子时（跨天）
+    if (hour >= 23 || hour < 1) return shichens[0];
+    
+    // 其他时辰
+    for (let i = 1; i < shichens.length; i++) {
+        const [start, end] = shichens[i].range;
+        if (hour >= start && hour < end) {
+            return shichens[i];
+        }
+    }
+    
+    return shichens[0]; // 默认返回子时
+}
+
+// 获取下一个时辰的开始时间
+function getNextShichenTime(date = new Date()) {
+    const now = new Date(date);
+    const hour = now.getHours();
+    let nextHour;
+    
+    // 计算下一个时辰的开始小时
+    if (hour >= 23 || hour < 1) nextHour = 1;
+    else if (hour >= 1 && hour < 3) nextHour = 3;
+    else if (hour >= 3 && hour < 5) nextHour = 5;
+    else if (hour >= 5 && hour < 7) nextHour = 7;
+    else if (hour >= 7 && hour < 9) nextHour = 9;
+    else if (hour >= 9 && hour < 11) nextHour = 11;
+    else if (hour >= 11 && hour < 13) nextHour = 13;
+    else if (hour >= 13 && hour < 15) nextHour = 15;
+    else if (hour >= 15 && hour < 17) nextHour = 17;
+    else if (hour >= 17 && hour < 19) nextHour = 19;
+    else if (hour >= 19 && hour < 21) nextHour = 21;
+    else nextHour = 23;
+    
+    const nextTime = new Date(now);
+    nextTime.setHours(nextHour, 0, 0, 0);
+    
+    // 如果计算出的时间已经过了，说明是明天
+    if (nextTime <= now) {
+        nextTime.setDate(nextTime.getDate() + 1);
+    }
+    
+    return nextTime;
 }
 
 // 农历转换工具
@@ -312,26 +452,36 @@ function updateDate() {
     const year = now.getFullYear();
     const weekday = days[now.getDay()];
     
-    // 获取农历日期
+    // 获取农历日期和当前时辰
     const lunar = getLunarDate(now);
+    const shichen = getCurrentShichen(now);
     
     document.getElementById('dateNumber').textContent = day;
     document.getElementById('dateText').textContent = `${year}年${month}月`;
     document.getElementById('weekday').textContent = `星期${weekday}`;
     document.getElementById('lunarDate').textContent = `农历${lunar.month}${lunar.day}`;
     document.getElementById('lunarYear').textContent = `${lunar.year} ${lunar.zodiac}`;
+    document.getElementById('shichenInfo').innerHTML = `
+        <span class="shichen-name">${shichen.name}</span>
+        <span class="shichen-desc">${shichen.description}</span>
+        <span class="shichen-time">${shichen.time}</span>
+    `;
 }
 
 // 更新运势内容
 function updateFortune() {
     const now = new Date();
-    const dateString = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
+    const shichen = getCurrentShichen(now);
     
-    // 基于日期确定宜做事情的数量（3-5项）
-    const favorableCount = (dateHash(dateString, 100) % 3) + 3;
+    // 基于日期和时辰创建唯一标识符
+    const dateString = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
+    const shichenString = `${dateString}-${shichen.name}`;
+    
+    // 基于时辰确定宜做事情的数量（3-5项）
+    const favorableCount = (dateHash(shichenString, 100) % 3) + 3;
     // "宜"只从积极行为和中性行为中选择，避免显著负面行为
     const favorablePool = [...positiveActivities, ...neutralActivities];
-    const selectedFavorable = getDateBasedItems(favorablePool, favorableCount, dateString, 1);
+    const selectedFavorable = getDateBasedItems(favorablePool, favorableCount, shichenString, 1);
     const favorableList = document.getElementById('favorableList');
     favorableList.innerHTML = '';
     selectedFavorable.forEach(activity => {
@@ -340,8 +490,8 @@ function updateFortune() {
         favorableList.appendChild(li);
     });
     
-    // 基于日期确定忌做事情的数量（3-5项）
-    const unfavorableCount = (dateHash(dateString, 200) % 3) + 3;
+    // 基于时辰确定忌做事情的数量（3-5项）
+    const unfavorableCount = (dateHash(shichenString, 200) % 3) + 3;
     // "忌"从所有行为中选择，但优先选择负面行为，确保与宜做的不重复
     const usedActivities = new Set(selectedFavorable);
     const availableActivities = allActivities.filter(activity => !usedActivities.has(activity));
@@ -353,12 +503,12 @@ function updateFortune() {
     // 先从负面行为中选择，不够的话再从其他行为中补充
     let selectedUnfavorable = [];
     if (availableNegative.length >= unfavorableCount) {
-        selectedUnfavorable = getDateBasedItems(availableNegative, unfavorableCount, dateString, 2);
+        selectedUnfavorable = getDateBasedItems(availableNegative, unfavorableCount, shichenString, 2);
     } else {
         selectedUnfavorable = [...availableNegative];
         const remainingCount = unfavorableCount - availableNegative.length;
         if (remainingCount > 0) {
-            const additionalItems = getDateBasedItems(availableOthers, remainingCount, dateString, 3);
+            const additionalItems = getDateBasedItems(availableOthers, remainingCount, shichenString, 3);
             selectedUnfavorable = selectedUnfavorable.concat(additionalItems);
         }
     }
@@ -371,8 +521,8 @@ function updateFortune() {
         unfavorableList.appendChild(li);
     });
     
-    // 基于日期生成今日箴言
-    const todayQuote = getDateBasedItem(investorQuotes, dateString, 3);
+    // 基于时辰生成投资箴言
+    const todayQuote = getDateBasedItem(investorQuotes, shichenString, 3);
     document.getElementById('dailyAdvice').innerHTML = `
         <div class="quote-content">
             <div class="quote-chinese">"${todayQuote.chinese}"</div>
@@ -382,20 +532,39 @@ function updateFortune() {
     `;
 }
 
+// 更新倒计时显示
+function updateCountdown() {
+    const now = new Date();
+    const nextShichenTime = getNextShichenTime(now);
+    const timeDiff = nextShichenTime - now;
+    
+    if (timeDiff <= 0) {
+        // 时辰已经更新，重新获取数据
+        updateDate();
+        updateFortune();
+        return;
+    }
+    
+    const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+    
+    document.getElementById('countHours').textContent = hours.toString().padStart(2, '0');
+    document.getElementById('countMinutes').textContent = minutes.toString().padStart(2, '0');
+    document.getElementById('countSeconds').textContent = seconds.toString().padStart(2, '0');
+}
+
 // 初始化页面
 function init() {
     updateDate();
     updateFortune();
+    updateCountdown();
+    
+    // 每秒更新倒计时
+    setInterval(() => {
+        updateCountdown();
+    }, 1000);
 }
 
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', init);
-
-// 每天零点自动更新
-setInterval(() => {
-    const now = new Date();
-    if (now.getHours() === 0 && now.getMinutes() === 0 && now.getSeconds() === 0) {
-        updateDate();
-        updateFortune();
-    }
-}, 1000);

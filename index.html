@@ -22,6 +22,30 @@
                         <div class="weekday" id="weekday"></div>
                         <div class="lunar-date" id="lunarDate"></div>
                         <div class="lunar-year" id="lunarYear"></div>
+                        <div class="shichen-info" id="shichenInfo"></div>
+                    </div>
+                </div>
+                
+                <!-- 倒计时组件 -->
+                <div class="countdown-section">
+                    <div class="countdown-card">
+                        <div class="countdown-title">下一时辰更新</div>
+                        <div class="countdown-display" id="countdownDisplay">
+                            <div class="time-unit">
+                                <span class="time-number" id="countHours">00</span>
+                                <span class="time-label">时</span>
+                            </div>
+                            <div class="time-separator">:</div>
+                            <div class="time-unit">
+                                <span class="time-number" id="countMinutes">00</span>
+                                <span class="time-label">分</span>
+                            </div>
+                            <div class="time-separator">:</div>
+                            <div class="time-unit">
+                                <span class="time-number" id="countSeconds">00</span>
+                                <span class="time-label">秒</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -30,7 +54,7 @@
                 <div class="fortune-grid">
                     <div class="fortune-card favorable">
                         <div class="card-header">
-                            <h2 class="card-title">宜</h2>
+                            <h2 class="card-title">本时辰宜</h2>
                             <div class="card-icon">✅</div>
                         </div>
                         <div class="card-content">
@@ -42,7 +66,7 @@
 
                     <div class="fortune-card unfavorable">
                         <div class="card-header">
-                            <h2 class="card-title">忌</h2>
+                            <h2 class="card-title">本时辰忌</h2>
                             <div class="card-icon">❌</div>
                         </div>
                         <div class="card-content">
@@ -56,7 +80,7 @@
 
             <section class="advice-section">
                 <div class="advice-card">
-                    <h3 class="advice-title">今日投资箴言</h3>
+                    <h3 class="advice-title">本时辰投资箴言</h3>
                     <div id="dailyAdvice">正在加载...</div>
                 </div>
             </section>
