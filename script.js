@@ -556,6 +556,12 @@ function updateCountdown() {
 
 // 初始化页面
 function init() {
+    // 检测是否在iframe中，如果是则启用PC版布局
+    if (window.self !== window.top) {
+        document.body.classList.add('iframe-mode');
+        console.log('检测到iframe环境，启用PC版布局');
+    }
+    
     updateDate();
     updateFortune();
     updateCountdown();

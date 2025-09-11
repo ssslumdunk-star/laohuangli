@@ -491,3 +491,51 @@ body {
         margin: 0 0.1rem;
     }
 }
+
+/* 
+ * iframe 中的PC版强制布局 
+ * 当在桌面版主页的iframe中显示时，强制使用PC版布局
+ */
+@media (max-width: 768px) {
+    /* 检测是否在iframe中 */
+    body.iframe-mode .container {
+        max-width: 1200px !important;
+        padding: 2rem 1rem !important;
+    }
+    
+    body.iframe-mode .title {
+        font-size: 2.8rem !important;
+    }
+    
+    body.iframe-mode .fortune-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+    }
+    
+    body.iframe-mode .date-card {
+        flex-direction: row !important;
+        text-align: left !important;
+        padding: 1.8rem 2.5rem !important;
+        gap: 1.5rem !important;
+        margin: 0 !important;
+    }
+    
+    body.iframe-mode .date-number {
+        font-size: 4rem !important;
+    }
+    
+    body.iframe-mode .fortune-card,
+    body.iframe-mode .advice-card {
+        margin: 0 !important;
+    }
+    
+    body.iframe-mode .advice-card {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+    }
+    
+    body.iframe-mode .countdown-card {
+        padding: 1.5rem 2rem !important;
+        margin: 0 !important;
+    }
+}
